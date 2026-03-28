@@ -1,0 +1,963 @@
+[32minfo[39m: CIO Dashboard API running on port 3001 {"timestamp":"2026-03-25T06:16:54.880Z"}
+[32minfo[39m: Background pollers scheduled {"timestamp":"2026-03-25T06:16:55.104Z"}
+[32minfo[39m: Running initial polls on startup... {"timestamp":"2026-03-25T06:16:55.104Z"}
+[33mwarn[39m: PostgreSQL unavailable (). Falling back to in-memory database. {"timestamp":"2026-03-25T06:16:55.112Z"}
+[32minfo[39m: [pg-mem] Loading schema... {"timestamp":"2026-03-25T06:16:55.211Z"}
+[33mwarn[39m: [pg-mem] Skipped statement: Extension does not exist: uuid-ossp {"timestamp":"2026-03-25T06:16:55.227Z"}
+[32minfo[39m: [pg-mem] Loading seed data... {"timestamp":"2026-03-25T06:16:55.307Z"}
+[33mwarn[39m: [pg-mem] Running with IN-MEMORY database. Data resets on restart. Install PostgreSQL for persistence. {"timestamp":"2026-03-25T06:16:55.324Z"}
+[32minfo[39m: OpManager: polled 118 devices (118 total in OM) {"timestamp":"2026-03-25T06:16:55.483Z"}
+[34mdebug[39m: OpManager alarm polling skipped — endpoint not available in current version {"timestamp":"2026-03-25T06:16:55.484Z"}
+[31merror[39m: Wazuh poll failed: Wazuh auth failed: 401 {"timestamp":"2026-03-25T06:16:55.527Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T06:18:13.609Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T06:18:14.637Z"}
+[34mdebug[39m: Cron: polling OpManager devices {"timestamp":"2026-03-25T06:20:00.498Z"}
+[34mdebug[39m: Cron: polling OpManager alarms {"timestamp":"2026-03-25T06:20:00.502Z"}
+[34mdebug[39m: OpManager alarm polling skipped — endpoint not available in current version {"timestamp":"2026-03-25T06:20:00.502Z"}
+[34mdebug[39m: Cron: polling Wazuh alerts {"timestamp":"2026-03-25T06:20:00.502Z"}
+[34mdebug[39m: Cron: polling SOC email inbox {"timestamp":"2026-03-25T06:20:00.506Z"}
+[34mdebug[39m: SOC email not configured — skipping {"timestamp":"2026-03-25T06:20:00.506Z"}
+[31merror[39m: Wazuh poll failed: Wazuh auth failed: 401 {"timestamp":"2026-03-25T06:20:00.514Z"}
+[32minfo[39m: OpManager: polled 118 devices (118 total in OM) {"timestamp":"2026-03-25T06:20:00.733Z"}
+[34mdebug[39m: Cron: polling OpManager devices {"timestamp":"2026-03-25T06:25:00.933Z"}
+[34mdebug[39m: Cron: polling OpManager alarms {"timestamp":"2026-03-25T06:25:00.938Z"}
+[34mdebug[39m: OpManager alarm polling skipped — endpoint not available in current version {"timestamp":"2026-03-25T06:25:00.939Z"}
+[34mdebug[39m: Cron: polling Wazuh alerts {"timestamp":"2026-03-25T06:25:00.939Z"}
+[31merror[39m: Wazuh poll failed: Wazuh auth failed: 401 {"timestamp":"2026-03-25T06:25:00.951Z"}
+[32minfo[39m: OpManager: polled 118 devices (118 total in OM) {"timestamp":"2026-03-25T06:25:01.141Z"}
+[34mdebug[39m: Cron: polling OpManager devices {"timestamp":"2026-03-25T06:30:00.749Z"}
+[34mdebug[39m: Cron: polling OpManager alarms {"timestamp":"2026-03-25T06:30:00.753Z"}
+[34mdebug[39m: OpManager alarm polling skipped — endpoint not available in current version {"timestamp":"2026-03-25T06:30:00.754Z"}
+[34mdebug[39m: Cron: polling Wazuh alerts {"timestamp":"2026-03-25T06:30:00.824Z"}
+[34mdebug[39m: Cron: polling SOC email inbox {"timestamp":"2026-03-25T06:30:00.841Z"}
+[34mdebug[39m: SOC email not configured — skipping {"timestamp":"2026-03-25T06:30:00.842Z"}
+[31merror[39m: Wazuh poll failed: Wazuh auth failed: 401 {"timestamp":"2026-03-25T06:30:00.843Z"}
+[32minfo[39m: OpManager: polled 118 devices (118 total in OM) {"timestamp":"2026-03-25T06:30:00.992Z"}
+[34mdebug[39m: Cron: polling OpManager devices {"timestamp":"2026-03-25T06:35:00.290Z"}
+[34mdebug[39m: Cron: polling OpManager alarms {"timestamp":"2026-03-25T06:35:00.295Z"}
+[34mdebug[39m: OpManager alarm polling skipped — endpoint not available in current version {"timestamp":"2026-03-25T06:35:00.295Z"}
+[34mdebug[39m: Cron: polling Wazuh alerts {"timestamp":"2026-03-25T06:35:00.467Z"}
+[32minfo[39m: OpManager: polled 118 devices (118 total in OM) {"timestamp":"2026-03-25T06:35:00.505Z"}
+[31merror[39m: Wazuh poll failed: Wazuh auth failed: 401 {"timestamp":"2026-03-25T06:35:00.545Z"}
+[34mdebug[39m: Cron: polling OpManager alarms {"timestamp":"2026-03-25T06:40:00.261Z"}
+[34mdebug[39m: OpManager alarm polling skipped — endpoint not available in current version {"timestamp":"2026-03-25T06:40:00.264Z"}
+[34mdebug[39m: Cron: polling Wazuh alerts {"timestamp":"2026-03-25T06:40:00.265Z"}
+[34mdebug[39m: Cron: polling SOC email inbox {"timestamp":"2026-03-25T06:40:00.267Z"}
+[34mdebug[39m: SOC email not configured — skipping {"timestamp":"2026-03-25T06:40:00.268Z"}
+[31merror[39m: Wazuh poll failed: Wazuh auth failed: 401 {"timestamp":"2026-03-25T06:40:00.278Z"}
+[34mdebug[39m: Cron: polling OpManager devices {"timestamp":"2026-03-25T06:40:00.994Z"}
+[32minfo[39m: OpManager: polled 118 devices (118 total in OM) {"timestamp":"2026-03-25T06:40:01.214Z"}
+[34mdebug[39m: Cron: polling OpManager alarms {"timestamp":"2026-03-25T06:45:00.127Z"}
+[34mdebug[39m: OpManager alarm polling skipped — endpoint not available in current version {"timestamp":"2026-03-25T06:45:00.130Z"}
+[34mdebug[39m: Cron: polling Wazuh alerts {"timestamp":"2026-03-25T06:45:00.145Z"}
+[31merror[39m: Wazuh poll failed: Wazuh auth failed: 401 {"timestamp":"2026-03-25T06:45:00.160Z"}
+[34mdebug[39m: Cron: polling OpManager devices {"timestamp":"2026-03-25T06:45:00.834Z"}
+[32minfo[39m: OpManager: polled 118 devices (118 total in OM) {"timestamp":"2026-03-25T06:45:01.027Z"}
+[34mdebug[39m: Cron: polling OpManager devices {"timestamp":"2026-03-25T06:50:00.450Z"}
+[32minfo[39m: OpManager: polled 118 devices (118 total in OM) {"timestamp":"2026-03-25T06:50:00.635Z"}
+[34mdebug[39m: Cron: polling OpManager alarms {"timestamp":"2026-03-25T06:50:00.983Z"}
+[34mdebug[39m: OpManager alarm polling skipped — endpoint not available in current version {"timestamp":"2026-03-25T06:50:00.984Z"}
+[34mdebug[39m: Cron: polling Wazuh alerts {"timestamp":"2026-03-25T06:50:00.985Z"}
+[34mdebug[39m: Cron: polling SOC email inbox {"timestamp":"2026-03-25T06:50:00.989Z"}
+[34mdebug[39m: SOC email not configured — skipping {"timestamp":"2026-03-25T06:50:00.990Z"}
+[31merror[39m: Wazuh poll failed: Wazuh auth failed: 401 {"timestamp":"2026-03-25T06:50:00.999Z"}
+[34mdebug[39m: Cron: polling OpManager alarms {"timestamp":"2026-03-25T06:55:00.220Z"}
+[34mdebug[39m: OpManager alarm polling skipped — endpoint not available in current version {"timestamp":"2026-03-25T06:55:00.223Z"}
+[34mdebug[39m: Cron: polling Wazuh alerts {"timestamp":"2026-03-25T06:55:00.224Z"}
+[31merror[39m: Wazuh poll failed: Wazuh auth failed: 401 {"timestamp":"2026-03-25T06:55:00.236Z"}
+[34mdebug[39m: Cron: polling OpManager devices {"timestamp":"2026-03-25T06:55:00.701Z"}
+[32minfo[39m: OpManager: polled 118 devices (118 total in OM) {"timestamp":"2026-03-25T06:55:00.911Z"}
+[34mdebug[39m: Cron: polling OpManager alarms {"timestamp":"2026-03-25T07:00:00.305Z"}
+[34mdebug[39m: OpManager alarm polling skipped — endpoint not available in current version {"timestamp":"2026-03-25T07:00:00.309Z"}
+[34mdebug[39m: Cron: polling Wazuh alerts {"timestamp":"2026-03-25T07:00:00.310Z"}
+[34mdebug[39m: Cron: polling SOC email inbox {"timestamp":"2026-03-25T07:00:00.317Z"}
+[34mdebug[39m: SOC email not configured — skipping {"timestamp":"2026-03-25T07:00:00.318Z"}
+[31merror[39m: Wazuh poll failed: Wazuh auth failed: 401 {"timestamp":"2026-03-25T07:00:00.327Z"}
+[34mdebug[39m: Cron: polling OpManager devices {"timestamp":"2026-03-25T07:00:00.738Z"}
+[32minfo[39m: OpManager: polled 118 devices (118 total in OM) {"timestamp":"2026-03-25T07:00:00.932Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:02:01.571Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:02:02.589Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:02:05.443Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:02:05.949Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:02:06.354Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:02:06.602Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:02:06.841Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:02:07.072Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:02:07.269Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:02:08.289Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:02:08.513Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:02:08.740Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:02:08.962Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:02:09.227Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:02:09.467Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:02:09.660Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:02:10.676Z"}
+[31merror[39m: Cannot read properties of undefined (reading '0')
+
+💥 This is a nasty error, which was unexpected by pg-mem. Also known "a bug" 😁 Please file an issue !
+
+*️⃣ Failed SQL statement: SELECT severity, COUNT(*) AS count FROM vapt_findings
+       WHERE status NOT IN ('closed') GROUP BY severity;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/vapt/summary","stack":"TypeError: Cannot read properties of undefined (reading '0')\n\n💥 This is a nasty error, which was unexpected by pg-mem. Also known \"a bug\" 😁 Please file an issue !\n\n*️⃣ Failed SQL statement: SELECT severity, COUNT(*) AS count FROM vapt_findings\n       WHERE status NOT IN ('closed') GROUP BY severity;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at BIndex.compare (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:9960:25)\n    at BIndex.nin (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10091:22)\n    at nin.next (<anonymous>)\n    at BIndex.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10221:20)\n    at enumerate.next (<anonymous>)\n    at NotInFilter.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:13212:27)\n    at enumerate.next (<anonymous>)\n    at Aggregation.seqScan (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4815:20)\n    at seqScan.next (<anonymous>)\n    at Aggregation.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4757:20)","timestamp":"2026-03-25T07:02:56.553Z"}
+[31merror[39m: Cannot read properties of undefined (reading '0')
+
+💥 This is a nasty error, which was unexpected by pg-mem. Also known "a bug" 😁 Please file an issue !
+
+*️⃣ Failed SQL statement: SELECT vf.*, u.name AS assigned_to_name,
+              CURRENT_DATE - vf.target_remediation_date AS days_overdue
+       FROM vapt_findings vf
+       LEFT JOIN users u ON vf.assigned_to = u.id
+       WHERE vf.target_remediation_date < CURRENT_DATE
+       AND vf.status NOT IN ('remediated', 'accepted_risk', 'closed')
+       ORDER BY days_overdue DESC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/vapt/ageing","stack":"TypeError: Cannot read properties of undefined (reading '0')\n\n💥 This is a nasty error, which was unexpected by pg-mem. Also known \"a bug\" 😁 Please file an issue !\n\n*️⃣ Failed SQL statement: SELECT vf.*, u.name AS assigned_to_name,\n              CURRENT_DATE - vf.target_remediation_date AS days_overdue\n       FROM vapt_findings vf\n       LEFT JOIN users u ON vf.assigned_to = u.id\n       WHERE vf.target_remediation_date < CURRENT_DATE\n       AND vf.status NOT IN ('remediated', 'accepted_risk', 'closed')\n       ORDER BY days_overdue DESC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at BIndex.compare (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:9960:25)\n    at BIndex.nin (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10091:22)\n    at nin.next (<anonymous>)\n    at BIndex.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10221:20)\n    at enumerate.next (<anonymous>)\n    at JoinIndex.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:5419:24)\n    at enumerate.next (<anonymous>)\n    at NotInFilter.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:13212:27)\n    at enumerate.next (<anonymous>)\n    at AndFilter.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:13009:20)","timestamp":"2026-03-25T07:02:56.583Z"}
+[31merror[39m: Cannot read properties of undefined (reading '0')
+
+💥 This is a nasty error, which was unexpected by pg-mem. Also known "a bug" 😁 Please file an issue !
+
+*️⃣ Failed SQL statement: SELECT severity, COUNT(*) AS count FROM vapt_findings
+       WHERE status NOT IN ('closed') GROUP BY severity;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/vapt/summary","stack":"TypeError: Cannot read properties of undefined (reading '0')\n\n💥 This is a nasty error, which was unexpected by pg-mem. Also known \"a bug\" 😁 Please file an issue !\n\n*️⃣ Failed SQL statement: SELECT severity, COUNT(*) AS count FROM vapt_findings\n       WHERE status NOT IN ('closed') GROUP BY severity;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at BIndex.compare (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:9960:25)\n    at BIndex.nin (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10091:22)\n    at nin.next (<anonymous>)\n    at BIndex.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10221:20)\n    at enumerate.next (<anonymous>)\n    at NotInFilter.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:13212:27)\n    at enumerate.next (<anonymous>)\n    at Aggregation.seqScan (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4815:20)\n    at seqScan.next (<anonymous>)\n    at Aggregation.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4757:20)","timestamp":"2026-03-25T07:02:57.577Z"}
+[31merror[39m: Cannot read properties of undefined (reading '0')
+
+💥 This is a nasty error, which was unexpected by pg-mem. Also known "a bug" 😁 Please file an issue !
+
+*️⃣ Failed SQL statement: SELECT vf.*, u.name AS assigned_to_name,
+              CURRENT_DATE - vf.target_remediation_date AS days_overdue
+       FROM vapt_findings vf
+       LEFT JOIN users u ON vf.assigned_to = u.id
+       WHERE vf.target_remediation_date < CURRENT_DATE
+       AND vf.status NOT IN ('remediated', 'accepted_risk', 'closed')
+       ORDER BY days_overdue DESC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/vapt/ageing","stack":"TypeError: Cannot read properties of undefined (reading '0')\n\n💥 This is a nasty error, which was unexpected by pg-mem. Also known \"a bug\" 😁 Please file an issue !\n\n*️⃣ Failed SQL statement: SELECT vf.*, u.name AS assigned_to_name,\n              CURRENT_DATE - vf.target_remediation_date AS days_overdue\n       FROM vapt_findings vf\n       LEFT JOIN users u ON vf.assigned_to = u.id\n       WHERE vf.target_remediation_date < CURRENT_DATE\n       AND vf.status NOT IN ('remediated', 'accepted_risk', 'closed')\n       ORDER BY days_overdue DESC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at BIndex.compare (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:9960:25)\n    at BIndex.nin (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10091:22)\n    at nin.next (<anonymous>)\n    at BIndex.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10221:20)\n    at enumerate.next (<anonymous>)\n    at JoinIndex.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:5419:24)\n    at enumerate.next (<anonymous>)\n    at NotInFilter.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:13212:27)\n    at enumerate.next (<anonymous>)\n    at AndFilter.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:13009:20)","timestamp":"2026-03-25T07:02:57.606Z"}
+[31merror[39m: Unknown alias "p"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: 
+      SELECT p.*, u.name AS owner_name,
+             COUNT(DISTINCT t.id) AS task_count,
+             COUNT(DISTINCT t.id) FILTER (WHERE t.status = 'done') AS tasks_done
+      FROM projects p
+      LEFT JOIN users u ON p.owner_id = u.id
+      LEFT JOIN tasks t ON t.project_id = p.id
+      WHERE 1=1
+     GROUP BY p.id, u.name ORDER BY p.created_at DESC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/projects","stack":"Error: Unknown alias \"p\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: \n      SELECT p.*, u.name AS owner_name,\n             COUNT(DISTINCT t.id) AS task_count,\n             COUNT(DISTINCT t.id) FILTER (WHERE t.status = 'done') AS tasks_done\n      FROM projects p\n      LEFT JOIN users u ON p.owner_id = u.id\n      LEFT JOIN tasks t ON t.project_id = p.id\n      WHERE 1=1\n     GROUP BY p.id, u.name ORDER BY p.created_at DESC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCols (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:2778:27)\n    at buildCols.next (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:2807:70\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)\n    at Selection (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:2807:53)\n    at Object.buildSelection (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:2730:12)\n    at OrderBy.select (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1338:20)\n    at buildRawSelect (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3137:15)\n    at buildSelect (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3011:20)\n    at buildWithable (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:2992:20)","timestamp":"2026-03-25T07:03:34.512Z"}
+[31merror[39m: Unknown alias "p"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: 
+      SELECT p.*, u.name AS owner_name,
+             COUNT(DISTINCT t.id) AS task_count,
+             COUNT(DISTINCT t.id) FILTER (WHERE t.status = 'done') AS tasks_done
+      FROM projects p
+      LEFT JOIN users u ON p.owner_id = u.id
+      LEFT JOIN tasks t ON t.project_id = p.id
+      WHERE 1=1
+     GROUP BY p.id, u.name ORDER BY p.created_at DESC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/projects","stack":"Error: Unknown alias \"p\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: \n      SELECT p.*, u.name AS owner_name,\n             COUNT(DISTINCT t.id) AS task_count,\n             COUNT(DISTINCT t.id) FILTER (WHERE t.status = 'done') AS tasks_done\n      FROM projects p\n      LEFT JOIN users u ON p.owner_id = u.id\n      LEFT JOIN tasks t ON t.project_id = p.id\n      WHERE 1=1\n     GROUP BY p.id, u.name ORDER BY p.created_at DESC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCols (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:2778:27)\n    at buildCols.next (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:2807:70\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)\n    at Selection (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:2807:53)\n    at Object.buildSelection (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:2730:12)\n    at OrderBy.select (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1338:20)\n    at buildRawSelect (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3137:15)\n    at buildSelect (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3011:20)\n    at buildWithable (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:2992:20)","timestamp":"2026-03-25T07:03:35.530Z"}
+[31merror[39m: Cannot read properties of undefined (reading '0')
+
+💥 This is a nasty error, which was unexpected by pg-mem. Also known "a bug" 😁 Please file an issue !
+
+*️⃣ Failed SQL statement: SELECT severity, COUNT(*) AS count FROM vapt_findings
+       WHERE status NOT IN ('closed') GROUP BY severity;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/vapt/summary","stack":"TypeError: Cannot read properties of undefined (reading '0')\n\n💥 This is a nasty error, which was unexpected by pg-mem. Also known \"a bug\" 😁 Please file an issue !\n\n*️⃣ Failed SQL statement: SELECT severity, COUNT(*) AS count FROM vapt_findings\n       WHERE status NOT IN ('closed') GROUP BY severity;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at BIndex.compare (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:9960:25)\n    at BIndex.nin (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10091:22)\n    at nin.next (<anonymous>)\n    at BIndex.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10221:20)\n    at enumerate.next (<anonymous>)\n    at NotInFilter.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:13212:27)\n    at enumerate.next (<anonymous>)\n    at Aggregation.seqScan (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4815:20)\n    at seqScan.next (<anonymous>)\n    at Aggregation.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4757:20)","timestamp":"2026-03-25T07:03:40.742Z"}
+[31merror[39m: Cannot read properties of undefined (reading '0')
+
+💥 This is a nasty error, which was unexpected by pg-mem. Also known "a bug" 😁 Please file an issue !
+
+*️⃣ Failed SQL statement: SELECT vf.*, u.name AS assigned_to_name,
+              CURRENT_DATE - vf.target_remediation_date AS days_overdue
+       FROM vapt_findings vf
+       LEFT JOIN users u ON vf.assigned_to = u.id
+       WHERE vf.target_remediation_date < CURRENT_DATE
+       AND vf.status NOT IN ('remediated', 'accepted_risk', 'closed')
+       ORDER BY days_overdue DESC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/vapt/ageing","stack":"TypeError: Cannot read properties of undefined (reading '0')\n\n💥 This is a nasty error, which was unexpected by pg-mem. Also known \"a bug\" 😁 Please file an issue !\n\n*️⃣ Failed SQL statement: SELECT vf.*, u.name AS assigned_to_name,\n              CURRENT_DATE - vf.target_remediation_date AS days_overdue\n       FROM vapt_findings vf\n       LEFT JOIN users u ON vf.assigned_to = u.id\n       WHERE vf.target_remediation_date < CURRENT_DATE\n       AND vf.status NOT IN ('remediated', 'accepted_risk', 'closed')\n       ORDER BY days_overdue DESC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at BIndex.compare (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:9960:25)\n    at BIndex.nin (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10091:22)\n    at nin.next (<anonymous>)\n    at BIndex.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10221:20)\n    at enumerate.next (<anonymous>)\n    at JoinIndex.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:5419:24)\n    at enumerate.next (<anonymous>)\n    at NotInFilter.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:13212:27)\n    at enumerate.next (<anonymous>)\n    at AndFilter.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:13009:20)","timestamp":"2026-03-25T07:03:40.750Z"}
+[31merror[39m: Cannot read properties of undefined (reading '0')
+
+💥 This is a nasty error, which was unexpected by pg-mem. Also known "a bug" 😁 Please file an issue !
+
+*️⃣ Failed SQL statement: SELECT severity, COUNT(*) AS count FROM vapt_findings
+       WHERE status NOT IN ('closed') GROUP BY severity;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/vapt/summary","stack":"TypeError: Cannot read properties of undefined (reading '0')\n\n💥 This is a nasty error, which was unexpected by pg-mem. Also known \"a bug\" 😁 Please file an issue !\n\n*️⃣ Failed SQL statement: SELECT severity, COUNT(*) AS count FROM vapt_findings\n       WHERE status NOT IN ('closed') GROUP BY severity;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at BIndex.compare (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:9960:25)\n    at BIndex.nin (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10091:22)\n    at nin.next (<anonymous>)\n    at BIndex.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10221:20)\n    at enumerate.next (<anonymous>)\n    at NotInFilter.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:13212:27)\n    at enumerate.next (<anonymous>)\n    at Aggregation.seqScan (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4815:20)\n    at seqScan.next (<anonymous>)\n    at Aggregation.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4757:20)","timestamp":"2026-03-25T07:03:41.774Z"}
+[31merror[39m: Cannot read properties of undefined (reading '0')
+
+💥 This is a nasty error, which was unexpected by pg-mem. Also known "a bug" 😁 Please file an issue !
+
+*️⃣ Failed SQL statement: SELECT vf.*, u.name AS assigned_to_name,
+              CURRENT_DATE - vf.target_remediation_date AS days_overdue
+       FROM vapt_findings vf
+       LEFT JOIN users u ON vf.assigned_to = u.id
+       WHERE vf.target_remediation_date < CURRENT_DATE
+       AND vf.status NOT IN ('remediated', 'accepted_risk', 'closed')
+       ORDER BY days_overdue DESC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/vapt/ageing","stack":"TypeError: Cannot read properties of undefined (reading '0')\n\n💥 This is a nasty error, which was unexpected by pg-mem. Also known \"a bug\" 😁 Please file an issue !\n\n*️⃣ Failed SQL statement: SELECT vf.*, u.name AS assigned_to_name,\n              CURRENT_DATE - vf.target_remediation_date AS days_overdue\n       FROM vapt_findings vf\n       LEFT JOIN users u ON vf.assigned_to = u.id\n       WHERE vf.target_remediation_date < CURRENT_DATE\n       AND vf.status NOT IN ('remediated', 'accepted_risk', 'closed')\n       ORDER BY days_overdue DESC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at BIndex.compare (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:9960:25)\n    at BIndex.nin (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10091:22)\n    at nin.next (<anonymous>)\n    at BIndex.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10221:20)\n    at enumerate.next (<anonymous>)\n    at JoinIndex.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:5419:24)\n    at enumerate.next (<anonymous>)\n    at NotInFilter.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:13212:27)\n    at enumerate.next (<anonymous>)\n    at AndFilter.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:13009:20)","timestamp":"2026-03-25T07:03:41.777Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:03:42.162Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:03:43.177Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:03:45.671Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:03:46.691Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:03:49.339Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:03:49.680Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:03:49.895Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:03:50.125Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:03:50.361Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:03:51.382Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:04:39.236Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:04:39.836Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:04:40.023Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:04:40.200Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:04:40.462Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:04:41.483Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:04:57.392Z"}
+[31merror[39m: Cannot read properties of undefined (reading '0')
+
+💥 This is a nasty error, which was unexpected by pg-mem. Also known "a bug" 😁 Please file an issue !
+
+*️⃣ Failed SQL statement: SELECT severity, COUNT(*) AS count FROM vapt_findings
+       WHERE status NOT IN ('closed') GROUP BY severity;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/vapt/summary","stack":"TypeError: Cannot read properties of undefined (reading '0')\n\n💥 This is a nasty error, which was unexpected by pg-mem. Also known \"a bug\" 😁 Please file an issue !\n\n*️⃣ Failed SQL statement: SELECT severity, COUNT(*) AS count FROM vapt_findings\n       WHERE status NOT IN ('closed') GROUP BY severity;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at BIndex.compare (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:9960:25)\n    at BIndex.nin (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10091:22)\n    at nin.next (<anonymous>)\n    at BIndex.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10221:20)\n    at enumerate.next (<anonymous>)\n    at NotInFilter.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:13212:27)\n    at enumerate.next (<anonymous>)\n    at Aggregation.seqScan (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4815:20)\n    at seqScan.next (<anonymous>)\n    at Aggregation.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4757:20)","timestamp":"2026-03-25T07:04:58.075Z"}
+[31merror[39m: Cannot read properties of undefined (reading '0')
+
+💥 This is a nasty error, which was unexpected by pg-mem. Also known "a bug" 😁 Please file an issue !
+
+*️⃣ Failed SQL statement: SELECT vf.*, u.name AS assigned_to_name,
+              CURRENT_DATE - vf.target_remediation_date AS days_overdue
+       FROM vapt_findings vf
+       LEFT JOIN users u ON vf.assigned_to = u.id
+       WHERE vf.target_remediation_date < CURRENT_DATE
+       AND vf.status NOT IN ('remediated', 'accepted_risk', 'closed')
+       ORDER BY days_overdue DESC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/vapt/ageing","stack":"TypeError: Cannot read properties of undefined (reading '0')\n\n💥 This is a nasty error, which was unexpected by pg-mem. Also known \"a bug\" 😁 Please file an issue !\n\n*️⃣ Failed SQL statement: SELECT vf.*, u.name AS assigned_to_name,\n              CURRENT_DATE - vf.target_remediation_date AS days_overdue\n       FROM vapt_findings vf\n       LEFT JOIN users u ON vf.assigned_to = u.id\n       WHERE vf.target_remediation_date < CURRENT_DATE\n       AND vf.status NOT IN ('remediated', 'accepted_risk', 'closed')\n       ORDER BY days_overdue DESC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at BIndex.compare (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:9960:25)\n    at BIndex.nin (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10091:22)\n    at nin.next (<anonymous>)\n    at BIndex.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10221:20)\n    at enumerate.next (<anonymous>)\n    at JoinIndex.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:5419:24)\n    at enumerate.next (<anonymous>)\n    at NotInFilter.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:13212:27)\n    at enumerate.next (<anonymous>)\n    at AndFilter.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:13009:20)","timestamp":"2026-03-25T07:04:58.079Z"}
+[31merror[39m: Unknown alias "p"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: 
+      SELECT p.*, u.name AS owner_name,
+             COUNT(DISTINCT t.id) AS task_count,
+             COUNT(DISTINCT t.id) FILTER (WHERE t.status = 'done') AS tasks_done
+      FROM projects p
+      LEFT JOIN users u ON p.owner_id = u.id
+      LEFT JOIN tasks t ON t.project_id = p.id
+      WHERE 1=1
+     GROUP BY p.id, u.name ORDER BY p.created_at DESC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/projects","stack":"Error: Unknown alias \"p\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: \n      SELECT p.*, u.name AS owner_name,\n             COUNT(DISTINCT t.id) AS task_count,\n             COUNT(DISTINCT t.id) FILTER (WHERE t.status = 'done') AS tasks_done\n      FROM projects p\n      LEFT JOIN users u ON p.owner_id = u.id\n      LEFT JOIN tasks t ON t.project_id = p.id\n      WHERE 1=1\n     GROUP BY p.id, u.name ORDER BY p.created_at DESC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCols (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:2778:27)\n    at buildCols.next (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:2807:70\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)\n    at Selection (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:2807:53)\n    at Object.buildSelection (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:2730:12)\n    at OrderBy.select (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1338:20)\n    at buildRawSelect (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3137:15)\n    at buildSelect (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3011:20)\n    at buildWithable (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:2992:20)","timestamp":"2026-03-25T07:04:58.505Z"}
+[34mdebug[39m: Cron: polling OpManager devices {"timestamp":"2026-03-25T07:05:00.024Z"}
+[32minfo[39m: OpManager: polled 118 devices (118 total in OM) {"timestamp":"2026-03-25T07:05:00.280Z"}
+[34mdebug[39m: Cron: polling OpManager alarms {"timestamp":"2026-03-25T07:05:00.579Z"}
+[34mdebug[39m: OpManager alarm polling skipped — endpoint not available in current version {"timestamp":"2026-03-25T07:05:00.580Z"}
+[34mdebug[39m: Cron: polling Wazuh alerts {"timestamp":"2026-03-25T07:05:00.581Z"}
+[31merror[39m: Wazuh poll failed: Wazuh auth failed: 401 {"timestamp":"2026-03-25T07:05:00.592Z"}
+[34mdebug[39m: Cron: polling OpManager devices {"timestamp":"2026-03-25T07:10:00.237Z"}
+[32minfo[39m: OpManager: polled 118 devices (118 total in OM) {"timestamp":"2026-03-25T07:10:00.459Z"}
+[34mdebug[39m: Cron: polling OpManager alarms {"timestamp":"2026-03-25T07:10:00.972Z"}
+[34mdebug[39m: OpManager alarm polling skipped — endpoint not available in current version {"timestamp":"2026-03-25T07:10:00.974Z"}
+[34mdebug[39m: Cron: polling Wazuh alerts {"timestamp":"2026-03-25T07:10:00.975Z"}
+[34mdebug[39m: Cron: polling SOC email inbox {"timestamp":"2026-03-25T07:10:00.977Z"}
+[34mdebug[39m: SOC email not configured — skipping {"timestamp":"2026-03-25T07:10:00.978Z"}
+[31merror[39m: Wazuh poll failed: Wazuh auth failed: 401 {"timestamp":"2026-03-25T07:10:00.987Z"}
+[34mdebug[39m: Cron: polling OpManager alarms {"timestamp":"2026-03-25T07:15:00.373Z"}
+[34mdebug[39m: OpManager alarm polling skipped — endpoint not available in current version {"timestamp":"2026-03-25T07:15:00.374Z"}
+[34mdebug[39m: Cron: polling Wazuh alerts {"timestamp":"2026-03-25T07:15:00.375Z"}
+[31merror[39m: Wazuh poll failed: Wazuh auth failed: 401 {"timestamp":"2026-03-25T07:15:00.385Z"}
+[34mdebug[39m: Cron: polling OpManager devices {"timestamp":"2026-03-25T07:15:00.686Z"}
+[32minfo[39m: OpManager: polled 118 devices (118 total in OM) {"timestamp":"2026-03-25T07:15:00.893Z"}
+[34mdebug[39m: Cron: polling OpManager alarms {"timestamp":"2026-03-25T07:20:00.608Z"}
+[34mdebug[39m: OpManager alarm polling skipped — endpoint not available in current version {"timestamp":"2026-03-25T07:20:00.610Z"}
+[34mdebug[39m: Cron: polling Wazuh alerts {"timestamp":"2026-03-25T07:20:00.611Z"}
+[31merror[39m: Wazuh poll failed: Wazuh auth failed: 401 {"timestamp":"2026-03-25T07:20:00.633Z"}
+[34mdebug[39m: Cron: polling SOC email inbox {"timestamp":"2026-03-25T07:20:00.762Z"}
+[34mdebug[39m: SOC email not configured — skipping {"timestamp":"2026-03-25T07:20:00.763Z"}
+[34mdebug[39m: Cron: polling OpManager devices {"timestamp":"2026-03-25T07:20:00.914Z"}
+[32minfo[39m: OpManager: polled 118 devices (118 total in OM) {"timestamp":"2026-03-25T07:20:01.124Z"}
+[31merror[39m: Cannot read properties of undefined (reading '0')
+
+💥 This is a nasty error, which was unexpected by pg-mem. Also known "a bug" 😁 Please file an issue !
+
+*️⃣ Failed SQL statement: SELECT vf.*, u.name AS assigned_to_name,
+              CURRENT_DATE - vf.target_remediation_date AS days_overdue
+       FROM vapt_findings vf
+       LEFT JOIN users u ON vf.assigned_to = u.id
+       WHERE vf.target_remediation_date < CURRENT_DATE
+       AND vf.status NOT IN ('remediated', 'accepted_risk', 'closed')
+       ORDER BY days_overdue DESC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/vapt/ageing","stack":"TypeError: Cannot read properties of undefined (reading '0')\n\n💥 This is a nasty error, which was unexpected by pg-mem. Also known \"a bug\" 😁 Please file an issue !\n\n*️⃣ Failed SQL statement: SELECT vf.*, u.name AS assigned_to_name,\n              CURRENT_DATE - vf.target_remediation_date AS days_overdue\n       FROM vapt_findings vf\n       LEFT JOIN users u ON vf.assigned_to = u.id\n       WHERE vf.target_remediation_date < CURRENT_DATE\n       AND vf.status NOT IN ('remediated', 'accepted_risk', 'closed')\n       ORDER BY days_overdue DESC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at BIndex.compare (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:9960:25)\n    at BIndex.nin (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10091:22)\n    at nin.next (<anonymous>)\n    at BIndex.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10221:20)\n    at enumerate.next (<anonymous>)\n    at JoinIndex.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:5419:24)\n    at enumerate.next (<anonymous>)\n    at NotInFilter.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:13212:27)\n    at enumerate.next (<anonymous>)\n    at AndFilter.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:13009:20)","timestamp":"2026-03-25T07:21:13.958Z"}
+[31merror[39m: Cannot read properties of undefined (reading '0')
+
+💥 This is a nasty error, which was unexpected by pg-mem. Also known "a bug" 😁 Please file an issue !
+
+*️⃣ Failed SQL statement: SELECT severity, COUNT(*) AS count FROM vapt_findings
+       WHERE status NOT IN ('closed') GROUP BY severity;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/vapt/summary","stack":"TypeError: Cannot read properties of undefined (reading '0')\n\n💥 This is a nasty error, which was unexpected by pg-mem. Also known \"a bug\" 😁 Please file an issue !\n\n*️⃣ Failed SQL statement: SELECT severity, COUNT(*) AS count FROM vapt_findings\n       WHERE status NOT IN ('closed') GROUP BY severity;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at BIndex.compare (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:9960:25)\n    at BIndex.nin (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10091:22)\n    at nin.next (<anonymous>)\n    at BIndex.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:10221:20)\n    at enumerate.next (<anonymous>)\n    at NotInFilter.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:13212:27)\n    at enumerate.next (<anonymous>)\n    at Aggregation.seqScan (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4815:20)\n    at seqScan.next (<anonymous>)\n    at Aggregation.enumerate (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4757:20)","timestamp":"2026-03-25T07:21:13.959Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:21:14.210Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:21:15.229Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:21:17.435Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:21:18.467Z"}
+[31merror[39m: ERROR: function date(timestamp with time zone) does not exist
+HINT: 🔨 Please note that pg-mem implements very few native functions.
+
+            👉 You can specify the functions you would like to use via "db.public.registerFunction(...)"
+
+🐜 This seems to be an execution error, which means that your request syntax seems okay,
+    but the resulting statement cannot be executed → Probably not a pg-mem error.
+
+*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count
+       FROM wazuh_alerts
+       WHERE triggered_at >= NOW() - INTERVAL '30 days'
+       GROUP BY day ORDER BY day ASC;
+
+👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:
+
+ {"path":"/api/v1/security/wazuh/summary","stack":"Error: ERROR: function date(timestamp with time zone) does not exist\nHINT: 🔨 Please note that pg-mem implements very few native functions.\n\n            👉 You can specify the functions you would like to use via \"db.public.registerFunction(...)\"\n\n🐜 This seems to be an execution error, which means that your request syntax seems okay,\n    but the resulting statement cannot be executed → Probably not a pg-mem error.\n\n*️⃣ Failed SQL statement: SELECT DATE(triggered_at) AS day, COUNT(*) AS count\n       FROM wazuh_alerts\n       WHERE triggered_at >= NOW() - INTERVAL '30 days'\n       GROUP BY day ORDER BY day ASC;\n\n👉 You can file an issue at https://github.com/oguimbal/pg-mem along with a way to reproduce this error (if you can), and  the stacktrace:\n\n\n    at buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:8212:15)\n    at Object.function (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:3497:46)\n    at _buildCall (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1636:38)\n    at _buildValueReal (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1544:20)\n    at _buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1488:11)\n    at buildValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1461:17)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:132\n    at Array.map (<anonymous>)\n    at C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:4730:87\n    at StackOf.usingValue (C:\\Users\\securityanalyst\\Desktop\\systematix\\Test\\backend\\node_modules\\pg-mem\\index.js:1192:24)","timestamp":"2026-03-25T07:21:19.501Z"}
