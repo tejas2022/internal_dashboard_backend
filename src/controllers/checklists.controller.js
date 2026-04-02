@@ -4,12 +4,13 @@ const { auditLog } = require('../middleware/auditLog');
 
 const getChecklistTemplates = async (req, res, next) => {
   try {
-    const { application_type, session } = req.query;
+    const { application_type, application_id, session } = req.query;
     let sql = 'SELECT * FROM checklist_templates WHERE is_active = true';
     const params = [];
-    if (application_type) { params.push(application_type); sql += ` AND application_type = $${params.length}`; }
+    if (application_id) { params.push(application_id); sql += ` AND application_id = $${params.length}`; }
+    else if (application_type) { params.push(application_type); sql += ` AND application_type = $${params.length}`; }
     if (session) { params.push(session); sql += ` AND session = $${params.length}`; }
-    sql += ' ORDER BY application_type, session, sort_order';
+    sql += ' ORDER BY sort_order';
     const result = await query(sql, params);
     res.json({ data: result.rows });
   } catch (err) { next(err); }

@@ -53,10 +53,14 @@ cron.schedule('30 3 * * *', async () => {
 
 logger.info('Background pollers scheduled');
 
-// Run immediately on startup so data appears without waiting for first cron tick
-(async () => {
+// Delay initial poll by 15s so the server handles early HTTP requests without pglite contention
+setTimeout(async () => {
   logger.info('Running initial polls on startup...');
-  await pollDevices();
-  await pollAlarms();
-  await pollWazuhAlerts();
-})().catch(err => logger.error('Initial poll error:', err.message));
+  try {
+    await pollDevices();
+    await pollAlarms();
+    await pollWazuhAlerts();
+  } catch (err) {
+    logger.error('Initial poll error:', err.message);
+  }
+}, 15000);

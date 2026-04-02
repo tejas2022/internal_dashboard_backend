@@ -19,17 +19,20 @@ const getCioDashboard = async (req, res, next) => {
       [today]
     );
 
-    // Network summary
-    const network = await query(
-      `SELECT
-         COUNT(DISTINCT device_id) AS total_devices,
-         COUNT(DISTINCT device_id) FILTER (WHERE status = 'up') AS devices_up,
-         COUNT(DISTINCT device_id) FILTER (WHERE status = 'down') AS devices_down
-       FROM (
-         SELECT DISTINCT ON (device_id) device_id, status
-         FROM opmanager_snapshots ORDER BY device_id, polled_at DESC
-       ) AS latest`
+    // Network summary — wrapped in timeout so a slow full-table scan doesn't block the dashboard
+    const networkTimeout = new Promise(resolve =>
+      setTimeout(() => resolve({ rows: [{ total_devices: 0, devices_up: 0, devices_down: 0 }] }), 4000)
     );
+    const networkQuery = query(
+      `SELECT
+         COUNT(*) AS total_devices,
+         SUM(CASE WHEN s.status = 'up' THEN 1 ELSE 0 END) AS devices_up,
+         SUM(CASE WHEN s.status = 'down' THEN 1 ELSE 0 END) AS devices_down
+       FROM opmanager_snapshots s
+       JOIN (SELECT device_id, MAX(polled_at) AS latest FROM opmanager_snapshots GROUP BY device_id) g
+         ON s.device_id = g.device_id AND s.polled_at = g.latest`
+    );
+    const network = await Promise.race([networkQuery, networkTimeout]);
 
     const activeAlarms = await query(
       'SELECT COUNT(*) AS count FROM opmanager_alarms WHERE is_active = true'

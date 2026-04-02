@@ -34,34 +34,40 @@ const pollDevices = async () => {
   }
 
   try {
-    // Uses v2 listDevices — returns { total, page, records, rows[] }
-    // Note: do NOT include type=json — it causes OpManager to return empty rows
+    // Keep only last 2 hours of snapshots — dashboard only needs the latest status per device
+    await query("DELETE FROM opmanager_snapshots WHERE polled_at < NOW() - INTERVAL '2 hours'");
+
     const data = await fetchOpManager('device/listDevices?');
-    // Note: 'total' may report 0 even when rows are present; use rows directly
     const devices = data.rows || data.details || [];
 
+    if (devices.length === 0) return;
+
+    // Bulk INSERT — one VALUES row per device, one round-trip to pglite
+    const now = new Date().toISOString();
+    const valueClauses = [];
+    const params = [];
+    let idx = 1;
     for (const device of devices) {
       const deviceId = device.ipaddress || device.deviceName || String(device.id || '');
-      await query(
-        `INSERT INTO opmanager_snapshots
-         (id, device_id, device_name, device_type, ip_address, status,
-          uptime_pct_24h, cpu_utilization, memory_utilization)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
-        [
-          randomUUID(),
-          deviceId,
-          device.displayName || device.deviceName || deviceId,
-          device.type || device.category || null,
-          device.ipaddress || device.ipAddress || null,
-          statusFromNum(device.statusNum),
-          null,
-          null,
-          null,
-        ]
+      valueClauses.push(`($${idx++}, $${idx++}, $${idx++}, $${idx++}, $${idx++}, $${idx++}, $${idx++}, $${idx++}, $${idx++}, $${idx++})`);
+      params.push(
+        randomUUID(), deviceId,
+        device.displayName || device.deviceName || deviceId,
+        device.type || device.category || null,
+        device.ipaddress || device.ipAddress || null,
+        statusFromNum(device.statusNum),
+        null, null, null, now
       );
     }
+    await query(
+      `INSERT INTO opmanager_snapshots
+       (id, device_id, device_name, device_type, ip_address, status,
+        uptime_pct_24h, cpu_utilization, memory_utilization, polled_at)
+       VALUES ${valueClauses.join(',')}`,
+      params
+    );
 
-    logger.info(`OpManager: polled ${devices.length} devices (${data.records || devices.length} total in OM)`);
+    logger.info(`OpManager: polled ${devices.length} devices`);
   } catch (err) {
     logger.error(`OpManager poll failed: ${err.message}`);
   }

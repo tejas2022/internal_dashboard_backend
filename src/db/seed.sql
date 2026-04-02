@@ -14,6 +14,14 @@ VALUES (
   true
 ) ON CONFLICT (username) DO NOTHING;
 
+-- Default applications
+INSERT INTO applications (id, name, type, environment, is_active) VALUES
+  ('aaaaaaaa-0000-0000-0000-000000000001', 'Omnesys',    'Trading Application', 'prod', true),
+  ('aaaaaaaa-0000-0000-0000-000000000002', 'Odin-PCG',   'Trading Application', 'prod', true),
+  ('aaaaaaaa-0000-0000-0000-000000000003', 'Odin_Retail','Trading Application', 'prod', true),
+  ('aaaaaaaa-0000-0000-0000-000000000004', 'Wazuh',      'Monitoring',          'prod', true)
+ON CONFLICT DO NOTHING;
+
 -- Default checklist templates — BOD
 INSERT INTO checklist_templates (application_type, session, item_key, label, description, sort_order) VALUES
 ('trading', 'BOD', 'server_up', 'Server / Service Online', 'Confirm the application server is up and reachable', 1),
