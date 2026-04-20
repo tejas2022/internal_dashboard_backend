@@ -6,6 +6,7 @@ const c = require('../controllers/dashboard.controller');
 router.use(authenticate);
 
 router.get('/summary', requireAdmin, c.getCioDashboard);
+router.get('/trends', requireAdmin, c.getComplianceTrends);
 router.get('/stakeholder', requireAnyRole, c.getStakeholderDashboard);
 
 module.exports = router;

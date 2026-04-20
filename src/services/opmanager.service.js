@@ -7,12 +7,13 @@ const OPMANAGER_HOST = process.env.OPMANAGER_HOST;
 const OPMANAGER_API_KEY = process.env.OPMANAGER_API_KEY;
 
 // OpManager statusNum → normalised status
-// 1 = Up, 2 = Down, 3 = Warning, 5 = Clear/Unmanaged, 0/others = unknown
+// 1 = Up, 2 = Down, 3 = Attention (warning, still reachable), 5 = Clear (OK), 7 = Unmanaged/Not Monitored
 const statusFromNum = (num) => {
   const n = parseInt(num);
-  if (n === 1) return 'up';
-  if (n === 2) return 'down';
-  return 'unknown';
+  if (n === 1 || n === 5) return 'up';       // Up or Clear
+  if (n === 3) return 'up';                   // Attention — device reachable, has alerts
+  if (n === 2) return 'down';                 // Down
+  return 'unknown';                           // 7 (Unmanaged) or anything else
 };
 
 const fetchOpManager = async (path) => {
