@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: cio_postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME:-cio_dashboard}
+      POSTGRES_USER: ${DB_USER:-cio_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD is required}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    expose:
+      - "5432"
+    networks:
+      - cio_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-cio_user} -d ${DB_NAME:-cio_dashboard}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: cio_backend
+    env_file: ./backend/.env
+    environment:
+      NODE_ENV: production
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-cio_dashboard}
+      DB_USER: ${DB_USER:-cio_user}
+      DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - backend_data:/app/data
+      - ./BOD_Checklist_OmneSys.xlsx:/app/BOD_Checklist_OmneSys.xlsx:ro
+      - ./BOD_Checklist_PCG.xlsx:/app/BOD_Checklist_PCG.xlsx:ro
+      - ./BOD_Checklist_Retail.xlsx:/app/BOD_Checklist_Retail.xlsx:ro
+      - "./VAPT Status.xlsx:/app/VAPT Status.xlsx:ro"
+      - "./Infra BOD Check List.xlsm:/app/Infra BOD Check List.xlsm:ro"
+    expose:
+      - "3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - cio_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3001/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      start_period: 30s
+      retries: 3
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: cio_frontend
+    environment:
+      BACKEND_URL: http://cio_backend:3001
+    ports:
+      - "${FRONTEND_PORT:-80}:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - cio_network
+    restart: unless-stopped
+
+networks:
+  cio_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  backend_data:
