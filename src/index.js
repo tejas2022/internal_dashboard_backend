@@ -16,14 +16,14 @@ const logger = require('./config/logger');
     process.exit(1);
   }
 
-  const WEAK = ['change-this-jwt-secret', 'change-this-refresh-secret'];
-  const usingWeak = WEAK.some(w =>
-    (process.env.JWT_SECRET || '').includes(w) ||
-    (process.env.JWT_REFRESH_SECRET || '').includes(w)
-  );
+  const jwtSecret = process.env.JWT_SECRET || '';
+  const jwtRefresh = process.env.JWT_REFRESH_SECRET || '';
+  const PLACEHOLDERS = ['change-this-jwt-secret', 'change-this-refresh-secret', 'change-this'];
+  const usingWeak = jwtSecret.length < 32 || jwtRefresh.length < 32 ||
+    PLACEHOLDERS.some(w => jwtSecret.includes(w) || jwtRefresh.includes(w));
   if (usingWeak) {
     if (process.env.NODE_ENV === 'production') {
-      console.error('FATAL: JWT_SECRET / JWT_REFRESH_SECRET are using placeholder values. Set strong secrets before running in production.');
+      console.error('FATAL: JWT_SECRET / JWT_REFRESH_SECRET are missing or too weak. Run the deploy script to generate strong secrets.');
       process.exit(1);
     } else {
       console.warn('WARNING: JWT secrets are using placeholder values. Change before deploying to production.');
