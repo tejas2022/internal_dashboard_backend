@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # =============================================================================
 #  CIO Dashboard — Production Deploy Script
-#  Run from any directory: bash /path/to/deploy.sh
-#  Safe to re-run for updates — idempotent.
+#  All credentials pre-configured. Just run: sudo bash deploy.sh
+#  Safe to re-run for updates — fully idempotent.
 # =============================================================================
 set -euo pipefail
 
@@ -14,13 +14,42 @@ info()    { echo -e "${CYAN}[INFO]${RESET}  $*"; }
 success() { echo -e "${GREEN}[OK]${RESET}    $*"; }
 warn()    { echo -e "${YELLOW}[WARN]${RESET}  $*"; }
 error()   { echo -e "${RED}[ERROR]${RESET} $*" >&2; exit 1; }
-step()    { echo -e "\n${BOLD}${CYAN}▶ $*${RESET}"; }
+step()    { echo -e "\n${BOLD}${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n▶ $*${RESET}"; }
 
-# ── Config ────────────────────────────────────────────────────────────────────
+# =============================================================================
+#  PRE-CONFIGURED VALUES — edit here if anything changes
+# =============================================================================
+
 DEPLOY_DIR="/opt/cio-dashboard"
 BACKEND_REPO="https://github.com/tejas2022/internal_dashboard_backend"
 FRONTEND_REPO="https://github.com/tejas2022/internal_dashboard"
 
+# Postgres
+DB_NAME="cio_dashboard"
+DB_USER="cio_user"
+DB_PASSWORD="CioSecure2026!"
+
+# Frontend port on host
+FRONTEND_PORT="80"
+
+# OpManager
+OPMANAGER_HOST="http://192.168.10.190:8060"
+OPMANAGER_API_KEY="d5f15fb54774a7c38fdb14e2a4850e18"
+OPMANAGER_WIDGETS="627:088ede14-fc54-4e5a-9ec4-280c763d13f7,629:8806ef67-3e68-44a3-8a6b-b7d6b84733df,626:200c6446-7adb-43da-ba0a-dd6e752244b2,628:4cde34dd-679f-4616-8637-9e8823cf8dd9,630:cbe9523b-18be-437c-bf59-ec9e9e4c6658"
+
+# Wazuh
+WAZUH_HOST="https://192.168.10.120:55000"
+WAZUH_USER="admin"
+WAZUH_PASSWORD="SecretPassword"
+WAZUH_DASHBOARD_URL="https://192.168.10.120"
+
+# SOC Email (leave blank to disable)
+SOC_EMAIL_HOST=""
+SOC_EMAIL_USER=""
+SOC_EMAIL_PASSWORD=""
+SOC_EMAIL_PORT="993"
+
+# xlsx data files expected in DEPLOY_DIR
 XLSX_FILES=(
   "BOD_Checklist_OmneSys.xlsx"
   "BOD_Checklist_PCG.xlsx"
@@ -29,37 +58,32 @@ XLSX_FILES=(
   "Infra BOD Check List.xlsm"
 )
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
-gen_secret() { node -e "console.log(require('crypto').randomBytes(48).toString('hex'))" 2>/dev/null \
-               || openssl rand -hex 48; }
+# =============================================================================
+#  HELPERS
+# =============================================================================
 
-prompt_password() {
-  local prompt="$1" var
-  while true; do
-    read -rsp "${prompt}: " var; echo
-    [[ ${#var} -ge 12 ]] && { echo "$var"; return; }
-    warn "Password must be at least 12 characters — try again."
-  done
+gen_secret() {
+  node -e "console.log(require('crypto').randomBytes(48).toString('hex'))" 2>/dev/null \
+    || openssl rand -hex 48
 }
 
 wait_healthy() {
   local container="$1" timeout=120 elapsed=0
   info "Waiting for ${container} to become healthy…"
   until [[ "$(docker inspect --format='{{.State.Health.Status}}' "$container" 2>/dev/null)" == "healthy" ]]; do
-    sleep 3; elapsed=$((elapsed+3))
-    [[ $elapsed -ge $timeout ]] && error "${container} did not become healthy within ${timeout}s. Run: docker logs ${container}"
+    sleep 3; elapsed=$((elapsed + 3))
+    [[ $elapsed -ge $timeout ]] && error "${container} did not become healthy after ${timeout}s.\nRun: docker logs ${container}"
     echo -n "."
   done
-  echo; success "${container} is healthy"
+  echo
+  success "${container} is healthy"
 }
 
-is_fresh_install() { [[ ! -d "$DEPLOY_DIR/backend" ]]; }
-
 # =============================================================================
-#  STEP 0 — Root check
+#  STEP 0 — Must be root
 # =============================================================================
 step "Checking permissions"
-[[ $EUID -ne 0 ]] && error "Please run as root: sudo bash deploy.sh"
+[[ $EUID -ne 0 ]] && error "Run as root: sudo bash deploy.sh"
 success "Running as root"
 
 # =============================================================================
@@ -67,38 +91,36 @@ success "Running as root"
 # =============================================================================
 step "Checking prerequisites"
 
-check_cmd() {
-  command -v "$1" &>/dev/null || error "'$1' is not installed. Install it and re-run."
-}
+for cmd in docker git; do
+  command -v "$cmd" &>/dev/null || error "'$cmd' is not installed. Install it and re-run."
+done
 
-check_cmd docker
-check_cmd git
-check_cmd node   # needed only for secret generation — falls back to openssl
+docker info &>/dev/null || error "Docker daemon is not running. Start it: systemctl start docker"
 
-# Docker daemon running?
-docker info &>/dev/null || error "Docker daemon is not running. Start it with: systemctl start docker"
-
-# Docker Compose v2?
-if docker compose version &>/dev/null; then
+if docker compose version &>/dev/null 2>&1; then
   COMPOSE_CMD="docker compose"
-elif docker-compose version &>/dev/null; then
+elif command -v docker-compose &>/dev/null; then
   COMPOSE_CMD="docker-compose"
 else
-  error "Docker Compose not found. Install it: https://docs.docker.com/compose/install/"
+  error "Docker Compose not found.\nInstall: apt install docker-compose-plugin  (Ubuntu 22+)"
 fi
 
-success "All prerequisites met (Docker: $(docker --version | awk '{print $3}' | tr -d ','))"
+success "Docker OK — Compose command: ${COMPOSE_CMD}"
+
+# node is optional (for secret gen) — openssl is the fallback
+command -v node &>/dev/null && info "Node.js found — using for secret generation" \
+                             || info "Node.js not found — using openssl for secret generation"
 
 # =============================================================================
-#  STEP 2 — Create deploy directory
+#  STEP 2 — Deploy directory
 # =============================================================================
-step "Setting up deploy directory: ${DEPLOY_DIR}"
+step "Preparing deploy directory: ${DEPLOY_DIR}"
 mkdir -p "$DEPLOY_DIR"
 cd "$DEPLOY_DIR"
-success "Working directory: $(pwd)"
+success "Working in: $(pwd)"
 
 # =============================================================================
-#  STEP 3 — Clone or update repos
+#  STEP 3 — Clone / update repos
 # =============================================================================
 step "Syncing repositories"
 
@@ -106,93 +128,80 @@ sync_repo() {
   local dir="$1" url="$2"
   if [[ -d "$dir/.git" ]]; then
     info "Updating ${dir}…"
-    git -C "$dir" pull --ff-only || {
-      warn "Fast-forward pull failed. Fetching and resetting to origin/main…"
-      git -C "$dir" fetch origin
-      git -C "$dir" reset --hard origin/main
-    }
+    git -C "$dir" fetch origin
+    git -C "$dir" reset --hard origin/main
+    success "${dir} updated to $(git -C "$dir" rev-parse --short HEAD)"
   else
     info "Cloning ${url} → ${dir}…"
     git clone "$url" "$dir"
+    success "${dir} cloned ($(git -C "$dir" rev-parse --short HEAD))"
   fi
 }
 
 sync_repo backend  "$BACKEND_REPO"
 sync_repo frontend "$FRONTEND_REPO"
 
-# Always keep docker-compose.yml up to date from the repo
+# Always pull latest docker-compose from repo
 cp backend/docker-compose.yml ./docker-compose.yml
-success "Repositories up to date"
+success "docker-compose.yml updated from repo"
 
 # =============================================================================
-#  STEP 4 — Check xlsx data files
+#  STEP 4 — xlsx data files
 # =============================================================================
 step "Checking data files"
-MISSING_XLSX=()
+
+MISSING=()
 for f in "${XLSX_FILES[@]}"; do
-  if [[ ! -f "$DEPLOY_DIR/$f" ]]; then
-    MISSING_XLSX+=("$f")
-  fi
+  [[ ! -f "${DEPLOY_DIR}/${f}" ]] && MISSING+=("$f")
 done
 
-if [[ ${#MISSING_XLSX[@]} -gt 0 ]]; then
-  warn "The following data files are missing from ${DEPLOY_DIR}:"
-  for f in "${MISSING_XLSX[@]}"; do echo "    ✗  $f"; done
+if [[ ${#MISSING[@]} -gt 0 ]]; then
+  warn "The following files are missing from ${DEPLOY_DIR}:"
+  for f in "${MISSING[@]}"; do echo "      ✗  $f"; done
   echo
-  echo -e "  Transfer them from your Windows machine with:"
-  echo -e "  ${CYAN}scp \"file.xlsx\" root@$(hostname -I | awk '{print $1}'):${DEPLOY_DIR}/${RESET}"
+  echo "  Transfer them from Windows:"
+  echo "  scp \"<file>\" root@$(hostname -I | awk '{print $1}'):${DEPLOY_DIR}/"
   echo
-  read -rp "Continue without them? The app will still run but seed data may be incomplete. [y/N] " confirm
-  [[ "${confirm,,}" == "y" ]] || error "Aborted. Add the files and re-run."
+  read -rp "  Continue without them? App runs but seed data will be incomplete. [y/N] " yn
+  [[ "${yn,,}" == "y" ]] || error "Aborted — add the files then re-run."
 else
   success "All data files present"
 fi
 
 # =============================================================================
-#  STEP 5 — Root .env (docker-compose reads this)
+#  STEP 5 — Root .env  (docker-compose reads this)
 # =============================================================================
-step "Configuring root .env (Postgres credentials)"
+step "Writing root .env (Postgres + compose config)"
 
-if [[ -f ".env" ]]; then
-  info "Root .env already exists — skipping (delete it to reconfigure)"
-else
-  echo
-  echo -e "  ${BOLD}Set a strong Postgres password.${RESET} It will be stored in .env"
-  DB_PASSWORD=$(prompt_password "  Postgres password")
-
-  cat > .env <<EOF
-# Auto-generated by deploy.sh on $(date -u +"%Y-%m-%d %H:%M UTC")
-DB_NAME=cio_dashboard
-DB_USER=cio_user
+cat > "${DEPLOY_DIR}/.env" <<EOF
+# Generated by deploy.sh on $(date -u +"%Y-%m-%d %H:%M UTC")
+DB_NAME=${DB_NAME}
+DB_USER=${DB_USER}
 DB_PASSWORD=${DB_PASSWORD}
-FRONTEND_PORT=80
+FRONTEND_PORT=${FRONTEND_PORT}
 EOF
-  chmod 600 .env
-  success "Root .env created"
+chmod 600 "${DEPLOY_DIR}/.env"
+success "Root .env written"
+
+# =============================================================================
+#  STEP 6 — Backend .env  (runtime config)
+# =============================================================================
+step "Writing backend .env (secrets + integrations)"
+
+# Preserve existing JWT secrets across re-deploys so sessions aren't invalidated
+if [[ -f "${DEPLOY_DIR}/backend/.env" ]]; then
+  EXISTING_JWT=$(grep "^JWT_SECRET=" "${DEPLOY_DIR}/backend/.env" | cut -d= -f2-)
+  EXISTING_JWT_REFRESH=$(grep "^JWT_REFRESH_SECRET=" "${DEPLOY_DIR}/backend/.env" | cut -d= -f2-)
 fi
+JWT_SECRET="${EXISTING_JWT:-$(gen_secret)}"
+JWT_REFRESH_SECRET="${EXISTING_JWT_REFRESH:-$(gen_secret)}"
 
-# Source root .env so we can reference DB_PASSWORD below
-set -o allexport; source .env; set +o allexport
+SERVER_IP=$(hostname -I | awk '{print $1}')
 
-# =============================================================================
-#  STEP 6 — Backend .env (runtime secrets + integrations)
-# =============================================================================
-step "Configuring backend .env"
+cat > "${DEPLOY_DIR}/backend/.env" <<EOF
+# Generated by deploy.sh on $(date -u +"%Y-%m-%d %H:%M UTC")
 
-if [[ -f "backend/.env" ]]; then
-  info "backend/.env already exists — skipping (delete it to reconfigure)"
-else
-  # Detect server IP for FRONTEND_URL
-  SERVER_IP=$(hostname -I | awk '{print $1}')
-
-  info "Generating JWT secrets…"
-  JWT_SECRET=$(gen_secret)
-  JWT_REFRESH_SECRET=$(gen_secret)
-
-  cat > backend/.env <<EOF
-# Auto-generated by deploy.sh on $(date -u +"%Y-%m-%d %H:%M UTC")
-
-# ── Database (injected from docker-compose) ───────────────────────────────────
+# ── Database ──────────────────────────────────────────────────────────────────
 DB_HOST=postgres
 DB_PORT=5432
 DB_NAME=${DB_NAME}
@@ -208,77 +217,77 @@ PORT=3001
 NODE_ENV=production
 FRONTEND_URL=http://${SERVER_IP}
 
-# ── OpManager (leave blank to use mock data) ──────────────────────────────────
-OPMANAGER_HOST=
-OPMANAGER_API_KEY=
-OPMANAGER_WIDGETS=
+# ── OpManager ─────────────────────────────────────────────────────────────────
+OPMANAGER_HOST=${OPMANAGER_HOST}
+OPMANAGER_API_KEY=${OPMANAGER_API_KEY}
+OPMANAGER_WIDGETS=${OPMANAGER_WIDGETS}
 
-# ── Wazuh (leave blank to use mock data) ──────────────────────────────────────
-WAZUH_HOST=
-WAZUH_USER=
-WAZUH_PASSWORD=
-WAZUH_DASHBOARD_URL=
+# ── Wazuh ─────────────────────────────────────────────────────────────────────
+WAZUH_HOST=${WAZUH_HOST}
+WAZUH_USER=${WAZUH_USER}
+WAZUH_PASSWORD=${WAZUH_PASSWORD}
+WAZUH_DASHBOARD_URL=${WAZUH_DASHBOARD_URL}
 
-# ── SOC Email (leave blank to disable) ────────────────────────────────────────
-SOC_EMAIL_HOST=
-SOC_EMAIL_USER=
-SOC_EMAIL_PASSWORD=
-SOC_EMAIL_PORT=993
+# ── SOC Email ─────────────────────────────────────────────────────────────────
+SOC_EMAIL_HOST=${SOC_EMAIL_HOST}
+SOC_EMAIL_USER=${SOC_EMAIL_USER}
+SOC_EMAIL_PASSWORD=${SOC_EMAIL_PASSWORD}
+SOC_EMAIL_PORT=${SOC_EMAIL_PORT}
 EOF
-  chmod 600 backend/.env
-  success "backend/.env created (JWT secrets auto-generated)"
-fi
+chmod 600 "${DEPLOY_DIR}/backend/.env"
+success "backend/.env written"
 
 # =============================================================================
-#  STEP 7 — Build and start containers
+#  STEP 7 — Build images
 # =============================================================================
-step "Building Docker images"
-$COMPOSE_CMD build --pull 2>&1 | grep -E "^(Step|#[0-9]| ---| =>|ERROR|error)" || true
+step "Building Docker images (this takes a few minutes on first run)"
+$COMPOSE_CMD -f "${DEPLOY_DIR}/docker-compose.yml" build --pull
 success "Images built"
 
+# =============================================================================
+#  STEP 8 — Start containers
+# =============================================================================
 step "Starting containers"
-$COMPOSE_CMD up -d
+$COMPOSE_CMD -f "${DEPLOY_DIR}/docker-compose.yml" up -d
 success "Containers started"
 
 # =============================================================================
-#  STEP 8 — Health checks
+#  STEP 9 — Health checks
 # =============================================================================
-step "Waiting for services to become healthy"
+step "Waiting for all services to become healthy"
+
 wait_healthy cio_postgres
 wait_healthy cio_backend
+
 # Frontend has no healthcheck — just verify it's running
 sleep 3
 if docker ps --filter "name=cio_frontend" --filter "status=running" | grep -q cio_frontend; then
   success "cio_frontend is running"
 else
-  error "cio_frontend failed to start. Run: docker logs cio_frontend"
+  error "cio_frontend failed to start.\nRun: docker logs cio_frontend"
 fi
 
 # =============================================================================
-#  STEP 9 — Smoke test
+#  STEP 10 — Smoke test
 # =============================================================================
 step "Running smoke test"
 sleep 2
-HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost/api/v1/health 2>/dev/null || echo "000")
+HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "http://localhost/api/v1/health" 2>/dev/null || echo "000")
 if [[ "$HTTP_STATUS" == "200" ]]; then
   success "API health check passed (HTTP 200)"
 else
-  warn "API returned HTTP ${HTTP_STATUS} — check logs if the app doesn't load"
+  warn "API returned HTTP ${HTTP_STATUS} — app may still be initialising, check: docker logs cio_backend"
 fi
 
 # =============================================================================
 #  Done
 # =============================================================================
-SERVER_IP=$(hostname -I | awk '{print $1}')
 echo
 echo -e "${GREEN}${BOLD}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
 echo -e "${GREEN}${BOLD}  Deployment complete!${RESET}"
 echo -e "${GREEN}${BOLD}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${RESET}"
-echo -e "  App URL   :  ${CYAN}http://${SERVER_IP}${RESET}"
-echo -e "  Logs      :  ${CYAN}docker compose -f ${DEPLOY_DIR}/docker-compose.yml logs -f${RESET}"
-echo -e "  Restart   :  ${CYAN}docker compose -f ${DEPLOY_DIR}/docker-compose.yml restart${RESET}"
-echo -e "  Update    :  ${CYAN}sudo bash ${DEPLOY_DIR}/backend/deploy.sh${RESET}"
-echo
-echo -e "  ${YELLOW}To configure integrations (OpManager, Wazuh, SOC email):${RESET}"
-echo -e "  ${CYAN}nano ${DEPLOY_DIR}/backend/.env${RESET}  then  ${CYAN}docker compose restart cio_backend${RESET}"
+echo -e "  App URL    :  ${CYAN}http://${SERVER_IP}${RESET}"
+echo -e "  Live logs  :  ${CYAN}docker compose -f ${DEPLOY_DIR}/docker-compose.yml logs -f${RESET}"
+echo -e "  Stop all   :  ${CYAN}docker compose -f ${DEPLOY_DIR}/docker-compose.yml down${RESET}"
+echo -e "  Update app :  ${CYAN}sudo bash ${DEPLOY_DIR}/backend/deploy.sh${RESET}"
 echo
