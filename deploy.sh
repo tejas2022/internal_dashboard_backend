@@ -188,13 +188,14 @@ success "Root .env written"
 # =============================================================================
 step "Writing backend .env (secrets + integrations)"
 
-# Preserve existing JWT secrets across re-deploys so sessions aren't invalidated
+# Preserve existing JWT secrets across re-deploys — but only if they're strong (>= 64 chars)
+# Placeholder values are short and get replaced automatically
 if [[ -f "${DEPLOY_DIR}/backend/.env" ]]; then
   EXISTING_JWT=$(grep "^JWT_SECRET=" "${DEPLOY_DIR}/backend/.env" | cut -d= -f2-)
   EXISTING_JWT_REFRESH=$(grep "^JWT_REFRESH_SECRET=" "${DEPLOY_DIR}/backend/.env" | cut -d= -f2-)
 fi
-JWT_SECRET="${EXISTING_JWT:-$(gen_secret)}"
-JWT_REFRESH_SECRET="${EXISTING_JWT_REFRESH:-$(gen_secret)}"
+[[ ${#EXISTING_JWT} -ge 64 ]]         && JWT_SECRET="$EXISTING_JWT"         || JWT_SECRET=$(gen_secret)
+[[ ${#EXISTING_JWT_REFRESH} -ge 64 ]] && JWT_REFRESH_SECRET="$EXISTING_JWT_REFRESH" || JWT_REFRESH_SECRET=$(gen_secret)
 
 SERVER_IP=$(hostname -I | awk '{print $1}')
 
